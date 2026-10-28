@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НЕКТО — анонимный чат по городам России</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="brand">НЕКТО<span class="brand-dot">.</span></div>
+    <div class="nav-online">онлайн: <span id="navOnline">0</span></div>
+  </div>
+</div>
+
+<!-- ── ШАГ 1: НАСТРОЙКА ────────────────────── -->
+<div id="lobby" class="lobby">
+  <div class="card">
+    <h1>Анонимный чат с Некто</h1>
+    <p class="subtitle">Ты попадаешь в пару со случайным человеком из твоего города и возрастной группы. Без регистрации и рекламы.</p>
+
+    <div class="field">
+      <label for="citySelect">Твой город</label>
+      <div class="select-wrap">
+        <input id="citySearch" class="city-search" type="text" placeholder="Поиск города…" autocomplete="off">
+        <select id="citySelect" size="7"></select>
+      </div>
+      <div id="cityStatus" class="city-status"></div>
+    </div>
+
+    <div class="field">
+      <label>Твой пол</label>
+      <div class="segmented">
+        <button type="button" class="seg-btn active" data-gender="m">Мужской</button>
+        <button type="button" class="seg-btn" data-gender="f">Женский</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="ageInput">Твой возраст</label>
+      <input id="ageInput" type="number" min="5" max="99" placeholder="Например, 21" class="text-input">
+    </div>
+
+    <div class="field">
+      <label>Кого ищешь</label>
+      <div class="segmented">
+        <button type="button" class="seg-btn active" data-want="m">Мужчину</button>
+        <button type="button" class="seg-btn" data-want="f">Женщину</button>
+        <button type="button" class="seg-btn" data-want="any">Не важно</button>
+      </div>
+    </div>
+
+    <div class="newbie-note">Поиск идёт только внутри твоей возрастной группы и твоего города. Защита: взрослые не попадают к несовершеннолетним.</div>
+
+    <button id="startBtn" class="start-btn">Найти собеседника</button>
+  </div>
+</div>
+
+<!-- ── ШАГ 2: ПОИСК / ОЖИДАНИЕ ─────────────── -->
+<div id="searching" class="lobby hidden">
+  <div class="card card-center">
+    <div class="spinner"></div>
+    <h2>Ищем собеседника…</h2>
+    <p class="subtitle" id="searchDesc">Поиск по городу, полу и возрасту.</p>
+    <p class="subtitle muted" id="searchWait">Обычно это занимает меньше минуты. Подожди — как только найдётся человек с такими же параметрами, вы окажетесь в паре.</p>
+    <button id="cancelBtn" class="ghost-btn wide">Отмена</button>
+  </div>
+</div>
+
+<!-- ── ШАГ 3: ЧАТ ──────────────────────────── -->
+<div id="chatWrap" class="chat-wrap hidden">
+  <div class="chat-header">
+    <div>
+      <div class="chat-title"><span id="roomLabel">—</span></div>
+      <div class="chat-meta"><span id="partnerInfo">Собеседник: аноним</span></div>
+    </div>
+    <div class="chat-controls">
+      <button id="nextBtn" class="ghost-btn">Следующий собеседник</button>
+      <button id="leaveBtn" class="ghost-btn danger">Закончить</button>
+    </div>
+  </div>
+  <div id="messages" class="messages"></div>
+  <div class="composer">
+    <textarea id="input" placeholder="Введите сообщение…" rows="1"></textarea>
+    <button id="sendBtn" class="send-btn">Отправить</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
